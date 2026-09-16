@@ -23,3 +23,11 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	global_position = Vector2(0, 0)
+
+
+func _on_portal_box_body_entered(body: Node2D) -> void:
+	get_tree().change_scene_to_file("res://main_menu.tscn")	
