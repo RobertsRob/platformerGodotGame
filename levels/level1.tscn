@@ -1,0 +1,35 @@
+[gd_scene format=4 uid="uid://cr3k0kgshcmvn"]
+
+[ext_resource type="Script" uid="uid://d75k6pa88rn6" path="res://character_body_2d.gd" id="1_ua5ty"]
+[ext_resource type="Texture2D" uid="uid://bcadxrn0cxrfp" path="res://icon.svg" id="2_61w3m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dliiv"]
+size = Vector2(77, 138)
+
+[sub_resource type="TileSet" id="TileSet_dliiv"]
+physics_layer_0/collision_layer = 1
+
+[node name="Main" type="Node" unique_id=1616739495]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1022009035]
+script = ExtResource("1_ua5ty")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=1787951089]
+position = Vector2(324, 464.5)
+scale = Vector2(0.6093748, 1.0859375)
+texture = ExtResource("2_61w3m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1056562125]
+position = Vector2(323.5, 464)
+shape = SubResource("RectangleShape2D_dliiv")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1124155273]
+position = Vector2(324, 464)
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 6.0
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1431430827]
+position = Vector2(68, 149)
+scale = Vector2(2.5, 2.5)
+tile_map_data = PackedByteArray("AAD//wsAAQAAAAAAAAAAAAsAAQAAAAAAAAABAAsAAQAAAAAAAAACAAsAAQAAAAAAAAADAAsAAQAAAAAAAAAEAAsAAQAAAAAAAAAFAAsAAQAAAAAAAAAGAAsAAQAAAAAAAAAHAAsAAQAAAAAAAAAIAAsAAQAAAAAAAAAJAAsAAQAAAAAAAAAKAAsAAQAAAAAAAAALAAsAAQAAAAAAAAAMAAsAAQAAAAAAAAANAAsAAQAAAAAAAAAOAAsAAQAAAAAAAAAPAAsAAQAAAAAAAAAQAAsAAQAAAAAAAAARAAsAAQAAAAAAAAASAAsAAQAAAAAAAAATAAsAAQAAAAAAAAAUAAsAAQAAAAAAAAAVAAsAAQAAAAAAAAAWAAsAAQAAAAAAAAAYAAsAAQAAAAAAAAA=")
+tile_set = SubResource("TileSet_dliiv")
