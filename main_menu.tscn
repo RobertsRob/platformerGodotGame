@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dffb7x83lq5wd"]
 
 [ext_resource type="Script" uid="uid://bm43r412h5k6q" path="res://control.gd" id="1_06t4h"]
+[ext_resource type="Texture2D" uid="uid://c15n1hfq23n6i" path="res://Tileset/player.png" id="2_7vrkn"]
 
 [node name="MainMenu" type="Node2D" unique_id=2036418278]
 
@@ -70,14 +71,14 @@ text = "Play 2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Exit" type="Button" parent="Control" unique_id=1729429946]
+[node name="Play3" type="Button" parent="Control" unique_id=2011269775]
 layout_mode = 0
-offset_left = 978.0
-offset_top = 554.0
-offset_right = 1112.0
-offset_bottom = 612.0
+offset_left = 171.0
+offset_top = 335.0
+offset_right = 305.0
+offset_bottom = 393.0
 
-[node name="Label" type="Label" parent="Control/Exit" unique_id=437934473]
+[node name="Label" type="Label" parent="Control/Play3" unique_id=1218873440]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,11 +86,17 @@ anchor_bottom = 1.0
 offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.9865517, 0, 0.15009177, 1)
+theme_override_colors/font_color = Color(0.9647059, 0.37254903, 0.18039216, 1)
 theme_override_font_sizes/font_size = 30
-text = "Exit"
+text = "Play 3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1863966532]
+position = Vector2(798, 321.00003)
+scale = Vector2(0.92499995, 1.3163464)
+texture = ExtResource("2_7vrkn")
+
 [connection signal="pressed" from="Control/play 1" to="Control" method="_on_play_1_pressed"]
 [connection signal="pressed" from="Control/Play2" to="Control" method="_on_play_2_pressed"]
+[connection signal="pressed" from="Control/Play3" to="Control" method="_on_play_3_pressed"]

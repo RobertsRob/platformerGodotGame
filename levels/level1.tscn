@@ -1,12 +1,13 @@
 [gd_scene format=4 uid="uid://cr3k0kgshcmvn"]
 
 [ext_resource type="Script" uid="uid://d75k6pa88rn6" path="res://character_body_2d.gd" id="1_ua5ty"]
-[ext_resource type="Texture2D" uid="uid://bcadxrn0cxrfp" path="res://icon.svg" id="2_61w3m"]
 [ext_resource type="Texture2D" uid="uid://cb831r2u2plkg" path="res://Tileset/spikes.png" id="2_ua5ty"]
 [ext_resource type="Texture2D" uid="uid://dpsj0pad2xso1" path="res://Tileset/portal.png" id="3_61w3m"]
 [ext_resource type="Texture2D" uid="uid://b6rqs38dn7v1t" path="res://Tileset/tileset16x16.png" id="3_b3oru"]
 [ext_resource type="Texture2D" uid="uid://pu4gdy3jwutg" path="res://sky.jpg" id="6_pdpul"]
 [ext_resource type="Script" uid="uid://do2inayt7mp1s" path="res://levels/sprite_2d.gd" id="7_8hd6v"]
+[ext_resource type="Texture2D" uid="uid://c15n1hfq23n6i" path="res://Tileset/player.png" id="7_045es"]
+[ext_resource type="Texture2D" uid="uid://b4qbfw0lrwlrk" path="res://Tileset/particles.png" id="8_045es"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ua5ty"]
 texture = ExtResource("3_b3oru")
@@ -122,11 +123,27 @@ sources/2 = SubResource("TileSetAtlasSource_pdpul")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dliiv"]
 size = Vector2(52, 111)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2x4g"]
-size = Vector2(44, 103)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_045es"]
+radius = 24.0
+height = 110.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2otyf"]
 size = Vector2(48, 108)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_omn1t"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(0.2, 0.2, 0.2)
+velocity_pivot = Vector3(5, 5, 5)
+direction = Vector3(0, 1, 0)
+spread = 114.231
+initial_velocity_min = 18.52
+initial_velocity_max = 45.28
+angular_velocity_min = -467.32
+angular_velocity_max = 347.77
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = 47.809998
 
 [node name="Main" type="Node" unique_id=1616739495]
 
@@ -165,9 +182,9 @@ position = Vector2(-41, 95)
 script = ExtResource("1_ua5ty")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1787951089]
-position = Vector2(321, 478)
-scale = Vector2(0.4062497, 0.87500006)
-texture = ExtResource("2_61w3m")
+position = Vector2(321, 477.5)
+scale = Vector2(0.16250002, 0.23125009)
+texture = ExtResource("7_045es")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1056562125]
 position = Vector2(321, 477.5)
@@ -181,10 +198,10 @@ rotation_smoothing_speed = 6.0
 [node name="HitBox" type="Area2D" parent="Player" unique_id=1211971444]
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HitBox" unique_id=438118301]
-position = Vector2(321, 478.5)
-shape = SubResource("RectangleShape2D_e2x4g")
-debug_color = Color(0.8595472, 0.3304529, 0.40302303, 0.41960785)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player/HitBox" unique_id=1905727082]
+position = Vector2(322, 477)
+shape = SubResource("CapsuleShape2D_045es")
+debug_color = Color(0.97768074, 0, 0.4059095, 0.41960785)
 
 [node name="PortalBox" type="Area2D" parent="Player" unique_id=838462325]
 collision_mask = 8
@@ -193,6 +210,13 @@ collision_mask = 8
 position = Vector2(321, 478)
 shape = SubResource("RectangleShape2D_2otyf")
 debug_color = Color(0.15497795, 0.6302516, 0.40279302, 0.41960785)
+
+[node name="MoveParticles" type="GPUParticles2D" parent="Player" unique_id=2114978652]
+position = Vector2(321, 533)
+amount = 40
+texture = ExtResource("8_045es")
+lifetime = 0.79
+process_material = SubResource("ParticleProcessMaterial_omn1t")
 
 [connection signal="body_entered" from="Player/HitBox" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Player/PortalBox" to="Player" method="_on_portal_box_body_entered"]
